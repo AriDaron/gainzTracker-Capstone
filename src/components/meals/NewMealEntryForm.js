@@ -47,7 +47,7 @@ export const NewMealForm = () => {
                         onChange={
                             (evt) => {
                                 const copy = { ...mealEntry }
-                                copy.date = evt.target.checked
+                                copy.date = evt.target.value
                                 updateMeal(copy)
                             }
                         } />

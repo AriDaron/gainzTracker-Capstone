@@ -9,10 +9,13 @@ export const NavBar = (props) => {
     return (
         <ul className="navbar">
             <li className="navbar__item active">
+                <Link className="navbar__link" to="/"> Home </Link>
+            </li>
+            <li className="navbar__item active">
                 <Link className="navbar__link" to="/meals">Meal Trak </Link>
             </li>
             <li className="navbar__item active">
-                <Link className="navbar__link" to="/gymTrak">Gym Trak </Link>
+                <Link className="navbar__link" to="/workouts">Gym Trak </Link>
             </li>
             <li className="navbar__item active">
                 <Link className="navbar__link" to="/diary">Progress Diary </Link>
@@ -30,3 +33,5 @@ export const NavBar = (props) => {
         </ul>
     )
 }
+
+// img src="/images/pngwing.com.png" alt="Gainz Icon" id="logo">
