@@ -19,6 +19,7 @@ export const NewWorkoutForm = () => {
             date:workoutEntry.date,
             description: workoutEntry.description,
             timeSpent: workoutEntry.timeSpent,
+            userId: parseInt(localStorage.getItem("gainz_user"))
            
            
         }

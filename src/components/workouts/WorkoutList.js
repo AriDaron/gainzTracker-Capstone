@@ -21,7 +21,7 @@ export const WorkoutList = () => {
         // leave DEPENDANCY ARRAY EMPTY , or infinite loop  
         []
     )
-
+    const loggedInUser = workoutEntries.filter((workoutEntry)=> workoutEntry.userId === parseInt(localStorage.getItem("gainz_user")))
     return (
         // <> fragment putting all return elements into one JSX elemne t
         <>
@@ -31,7 +31,7 @@ export const WorkoutList = () => {
         
             {
                 //iterate workouts and convert object to JXS 
-                workoutEntries.map(
+                loggedInUser.map(
                     (workoutObj) => {
                         return <p key= {`workout--${workoutObj.id}`}> <div> Date: {workoutObj.date} </div> Workout: {workoutObj.description}. 
                         <div>Total time spent working out: {workoutObj.timeSpent} mins.  </div>

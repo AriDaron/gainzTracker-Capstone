@@ -2,9 +2,24 @@
     display: flex;
     flex-wrap: nowrap;
     justify-content: left;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
+
 
 .navbar__item {
     flex-basis: 20%;
     list-style-type: none;
 }
+
+img {
+    align-items: right;
+    border: 1px solid #d6c583;
+    border-radius: 20px;
+    padding: 20px 20px 20px 20px;
+    width: 75px;
+    margin: 80px;
+  }
+
+  .muscle {
+      align-items: center;
+  }

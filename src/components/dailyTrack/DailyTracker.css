@@ -3,4 +3,18 @@
     padding: 0 1rem;
     border-color: blue;
     color: blueviolet;
+    padding: 1rem;
+    margin: 0 25%;
+    border: 1px dashed slategrey;
+    border-radius: 0.5rem;
+    text-align: center;
+  }
+
+  .dailyTrakHeader {
+color: blueviolet;
+font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+font-size: 2rem;
+border: black;
+text-align: center;
+
   }

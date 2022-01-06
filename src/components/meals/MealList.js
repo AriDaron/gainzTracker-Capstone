@@ -6,7 +6,7 @@ import "./Meals.css"
 export const MealEntryList = () => {
     const [mealEntries, updatedMeals] = useState([])
     const [active, setActive] = useState("")
-    const history= useHistory()
+    const history = useHistory()
     //useEffect() When state changes it invokes a function. like an event listener. 
     //used to watch specific state variables and define logic that should run when that state changes 
     //go get data from API and pull it into application state with fetch 
@@ -21,20 +21,24 @@ export const MealEntryList = () => {
         // leave DEPENDANCY ARRAY EMPTY , or infinite loop  
         []
     )
-
+    const loggedInUser = mealEntries.filter((mealEntry)=> mealEntry.userId === parseInt(localStorage.getItem("gainz_user")))
     return (
         // <> fragment putting all return elements into one JSX elemne t
         <>
-       
-            <button onClick={()=> history.push("/meals/create")}> Add a New Meal  </button>
+
+            <button onClick={() => history.push("/meals/create")}> Add a New Meal  </button>
             {active}
-        
+
             {
                 //iterate meals and convert object to JXS 
-                mealEntries.map(
+                loggedInUser.map(
                     (mealObj) => {
-                        return <p key= {`meal--${mealObj.id}`}> <div> Date: {mealObj.date} </div> {mealObj.description}. This meals has a total of {mealObj.calories} calories.  
-                        </p>
+                        return <div key={`meal--${mealObj.id}`} className="mealList">
+                            <p >
+                                Date: {mealObj.date} For {mealObj.mealTime}
+                                today I had {mealObj.description}. This meals has a total of {mealObj.calories} calories.
+                            </p>
+                        </div>
                     }
                 )
             }

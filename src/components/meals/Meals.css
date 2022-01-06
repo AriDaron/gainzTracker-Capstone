@@ -1,0 +1,10 @@
+.mealList {
+   padding-bottom: 2px;
+    border-color: black;
+    display: flex;
+    text-align: left;
+}
+
+.mealButton {
+align-content: center;
+}

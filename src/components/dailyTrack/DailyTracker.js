@@ -9,6 +9,7 @@ export const DailyTracker = () => {
     const [workoutTime, updateWorkoutTime] = useState([])
     const [active, setActive] = useState("")
     const history= useHistory()
+
     
     //useEffect() When state changes it invokes a function. like an event listener. 
     //used to watch specific state variables and define logic that should run when that state changes 
@@ -39,9 +40,10 @@ export const DailyTracker = () => {
     return (
         // <> fragment putting all return elements into one JSX elemne t
         <>
+        Welcome {DailyTracker.userId}
         <section className="dailyTrak">
         <div>
-            <h2> Daily Tracker </h2>
+            <h2 className="dailyTrakHeader "> Daily Tracker </h2>
         </div>
         <div>
             Current Calorie intake: 

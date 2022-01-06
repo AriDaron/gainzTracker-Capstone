@@ -2,12 +2,23 @@ import React, { useState } from "react"
 import { useHistory } from "react-router";
 
 export const NewMealForm = () => {
-
+    const [mealTime, updateMealTime] = useState([])
     const [mealEntry, updateMeal] = useState({
-        date:0,
+        date: 0,
+        mealTime: "",
         description: "",
         calories: 0
     });
+
+    const MealTimeChoices = [
+        { label: "Breakfast" },
+        { label: "Lunch" },
+        { label: "Snack" },
+        { label: "Dinner" }
+    ]
+    const SaveMealTime = (e) => {
+        updateMealTime(e.target.value)
+    }
 
     const history = useHistory()
 
@@ -16,11 +27,13 @@ export const NewMealForm = () => {
         event.preventDefault()
 
         const newMeal = {
-            date:mealEntry.date,
+            date: mealEntry.date,
+            mealTime: mealEntry.mealTime,
             description: mealEntry.description,
             calories: mealEntry.calories,
-           
-           
+            userId: parseInt(localStorage.getItem("gainz_user"))
+
+
         }
 
 
@@ -37,9 +50,11 @@ export const NewMealForm = () => {
             })
     }
 
+
+
     return (
-        <form className="ticketForm">
-            <h2 className="ticketForm__title">New Meal Entry </h2>
+        <form className="mealForm">
+            <h2 className="mealForm__title">New Meal Entry </h2>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="name">Date:</label>
@@ -53,6 +68,22 @@ export const NewMealForm = () => {
                         } />
                 </div>
             </fieldset>
+            <div>
+               
+                <br />
+                <select id="mealTime" onChange={
+                            (evt) => {
+                                const copy = { ...mealEntry } //creates a copy of state 
+                                copy.mealTime = evt.target.value
+                                updateMeal(copy)
+                            }
+                        }>
+                <option value="⬇️ Select a meal time ⬇️"> --Select a meal time-- </option>
+            {MealTimeChoices.map((mealTime) => <option key={mealTime.label}>{mealTime.label}</option>)}
+                </select>
+            
+            
+            </div>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="description">Description:</label>
@@ -87,7 +118,7 @@ export const NewMealForm = () => {
                         } />
                 </div>
             </fieldset>
-            
+
             <button onClick={saveMeal} className="btn btn-primary" >
                 Submit Meal
             </button>

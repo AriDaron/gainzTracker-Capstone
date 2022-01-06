@@ -7,18 +7,21 @@ import React from "react";
 import { Route } from "react-router";
 import { DailyTracker } from "./dailyTrack/DailyTracker";
 import { DiaryList } from "./diaryEntries/DiaryList";
+import { Entry } from "./diaryEntries/Entry";
 import { DiaryEntryForm } from "./diaryEntries/NewDiaryEntry";
 import { MealEntryList } from "./meals/MealList";
 import { NewMealForm } from "./meals/NewMealEntryForm";
 import { NewWorkoutForm } from "./workouts/NewWorkoutEntry";
 import { WorkoutList } from "./workouts/WorkoutList";
+import "./GainzTracker.css"
 
 
 export const ApplicationView = () => {
 
     return (
         <>
-            <h1> Gainz Tracker </h1>
+            
+            <h1 className="header"> Gainz Tracker </h1>
             <Route exact path="/">
                 <DailyTracker/>
             </Route>
@@ -36,6 +39,9 @@ export const ApplicationView = () => {
             </Route>
             <Route exact path="/diary">
                 <DiaryList/>
+            </Route>
+            <Route exact path="/diary/:diaryId(\d+)">
+                <Entry/>
             </Route>
             <Route exact path="/diary/create">
                 <DiaryEntryForm/>

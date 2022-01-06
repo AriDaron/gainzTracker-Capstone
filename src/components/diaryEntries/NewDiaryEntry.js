@@ -1,12 +1,32 @@
+import axios from "axios";
 import React, { useState } from "react"
 import { useHistory } from "react-router";
-
 export const DiaryEntryForm = () => {
 
+    const [imageSelected, setImageSelected] = useState("");
+
+    const uploadImage = () => {
+        //this obj holds all data from the form thats going to be uploaded to cloudinary 
+        const formData = new FormData()
+        formData.append("file", imageSelected)
+        formData.append("upload_preset", "ylnpx97f") //pass the upload preset to make sure its actually sending 
+        
+        // axios.post request sends upload to this specific route 
+        axios.post(
+            "https://api.cloudinary.com/v1_1/aridaron/image/upload",
+            formData
+        ).then((response) => {
+            console.log(response); 
+        });
+    };
+
     const [diaryEntry, updateDiary] = useState({
-        date:0,
+        date: 0,
         description: "",
-        photoURL: 0
+        photoURL: "",
+        userId: 1
+        
+
     });
 
     const history = useHistory()
@@ -16,11 +36,12 @@ export const DiaryEntryForm = () => {
         event.preventDefault()
 
         const newDiary = {
-            date:diaryEntry.date,
+            date: diaryEntry.date,
             description: diaryEntry.description,
             photoURL: diaryEntry.photoURL,
-           
-           
+            userId: parseInt(localStorage.getItem("gainz_user"))
+
+
         }
 
 
@@ -75,7 +96,9 @@ export const DiaryEntryForm = () => {
                     <label htmlFor="description">Progress Photo Upload: </label>
                     <input
                         required autoFocus
-                        type="text"
+                         type="file" onChange={(event) => {
+                            setImageSelected(event.target.files[0]);
+                        }} //this onChange  creates a function that grabs the file we're working with  with and stores into an event ekement 
                         className="url"
                         placeholder="Photo URL"
                         onChange={
@@ -85,9 +108,10 @@ export const DiaryEntryForm = () => {
                                 updateDiary(copy) //make the copy the new state 
                             }
                         } />
+                    {/* <button onClick={uploadImage}>Upload Image </button> */}
                 </div>
             </fieldset>
-            
+
             <button onClick={saveDiary} className="btn btn-primary" >
                 Submit Diary
             </button>
